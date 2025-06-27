@@ -3,15 +3,18 @@ package Interfaz;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import Extends.LoginCliente;
-import Extends.Rol;
+import Enum.LoginCliente;
+import Enum.Rol;
 import Logica.Admin;
 import Logica.Cliente;
-import Logica.Usuario;
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Admin yo = new Admin("admin@gmail.com", "admin");
+        /*Admin:
+        mail: admin@gmail.com    --> Esta en la linea 79 de Admin.java
+        contraseña: admin
+        */
         int opcion;
         String mail, contrasenia;
         do {
@@ -23,34 +26,35 @@ public class Main {
                 case 0: //Admin
                     mail = (String) JOptionPane.showInputDialog(null,"Ingrese mail","Login Admin",0, new ImageIcon(Main.class.getResource("/img/admin.png")),null,null);
                     contrasenia = (String) JOptionPane.showInputDialog(null,"Ingrese contrasenia","Login Admin",0, new ImageIcon(Main.class.getResource("/img/admin.png")),null,null);
-                    yo.Login(mail, contrasenia);
+                    Admin admin = new Admin(mail,contrasenia);
+                    admin.Login(mail, contrasenia);
                     break;
 
                 case 1: //Cliente
-                    int opcCliente;
-                    
                     do {
-                        opcCliente = JOptionPane.showOptionDialog(null, "Iniciar cuenta/ Registrarse", "Bienvenido Cliente", 0,0,null,LoginCliente.values(), LoginCliente.values());
-                        switch (opcCliente) {
+                        opcion = JOptionPane.showOptionDialog(null, "Login / Registrarse", "Bienvenido Cliente", opcion, opcion, new ImageIcon(Main.class.getResource("/img/cliente.png")), LoginCliente.values(), LoginCliente.values());
+                        switch (opcion) {
                             case 0: //Login
                             mail = (String) JOptionPane.showInputDialog(null,"Ingrese mail","Login Cliente",0, new ImageIcon(Main.class.getResource("/img/cliente.png")),null,null);
                             contrasenia = (String) JOptionPane.showInputDialog(null,"Ingrese contrasenia","Login Cliente",0, new ImageIcon(Main.class.getResource("/img/cliente.png")),null,null);
-                            Cliente.Login(mail, contrasenia);
+                            Cliente nuevo = new Cliente(mail,contrasenia);
+                            nuevo.Login(mail, contrasenia);
                             break;
                         
                             case 1: //Registrar
-                            mail = (String) JOptionPane.showInputDialog(null,"Ingrese mail","Login Cliente",0, new ImageIcon(Main.class.getResource("/img/cliente.png")),null,null);
-                            contrasenia = (String) JOptionPane.showInputDialog(null,"Ingrese contrasenia","Login Cliente",0, new ImageIcon(Main.class.getResource("/img/cliente.png")),null,null);
-                            Cliente nuevo1 = new Cliente(mail, contrasenia);
                             
+					        mail = (String) JOptionPane.showInputDialog(null,"Ingrese mail","Login Cliente",0, new ImageIcon(Main.class.getResource("/img/cliente.png")),null,null);
+                            contrasenia = (String) JOptionPane.showInputDialog(null,"Ingrese contrasenia","Login Cliente",0, new ImageIcon(Main.class.getResource("/img/cliente.png")),null,null);
+                            Cliente nuevoCliente = new Cliente(mail, contrasenia);
+                            Cliente.getClientes().add(nuevoCliente);
+                            JOptionPane.showMessageDialog(null, "Registro con exito. Ya puede iniciar sesión.");
                             break;
                         }
-
-                    } while (opcCliente!=2);
+                    } while (opcion!=2);
                     break;
 
                 default:
-                JOptionPane.showMessageDialog(null,"Nos vemos!","Adiós, ten piedad Ghami",JOptionPane.PLAIN_MESSAGE,new ImageIcon(Main.class.getResource("/img/adios.png")));
+                JOptionPane.showMessageDialog(null,"Gracias por usar el sistema!","Adios, ten piedad Ghami",JOptionPane.PLAIN_MESSAGE,new ImageIcon(Main.class.getResource("/img/adios.png")));
                     break;
             }
 

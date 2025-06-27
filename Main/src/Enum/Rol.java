@@ -1,4 +1,4 @@
-package Extends;
+package Enum;
 
 public enum Rol {
 Administrador, Cliente, Salir

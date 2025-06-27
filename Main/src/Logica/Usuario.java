@@ -1,9 +1,9 @@
 package Logica;
 
 public abstract class Usuario {
-    private String nombre;
-    private String mail;
-    private String contrasenia;
+    protected String nombre;
+    protected String mail;
+    protected String contrasenia;
 
     public Usuario(String nombre, String mail, String contrasenia) {
         this.nombre = nombre;
@@ -45,12 +45,10 @@ public abstract class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public void Login(String mail, String contrasenia) {
+    public void Login(String mail, String contrasenia){}
+
+    public abstract void Menu();
 
     }
 
-    public void Menu() {
 
-    }
-
-}
