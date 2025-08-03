@@ -7,6 +7,7 @@ import Enum.LoginCliente;
 import Enum.Rol;
 import Logica.Admin;
 import Logica.Cliente;
+import Enum.OpcionesInversion;
 
 
 public class Main {
